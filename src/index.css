@@ -1,0 +1,186 @@
+:root {
+  /* Cosmic Theme Palette */
+  --primary-color: #4CC9F0; /* Vibrant Cyan */
+  --primary-hover: #3db5da;
+  --heading-color: #E0BBE4; /* Soft Lilac Glow */
+  --text-color: #F8FAFC; /* keeping white-ish for body readability */
+  --text-muted: #957DAD; /* Muted Lavender */
+  
+  --bg-color: #0f172a; /* Fallback */
+  --card-bg: rgba(26, 26, 46, 0.9); /* Deep Midnight Blue 90% opacity */
+  
+  --border-color: rgba(149, 125, 173, 0.2); /* Subtle lavender border */
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  
+  --radius: 12px;
+  --glow-shadow: 0 0 15px rgba(224, 187, 228, 0.25); /* Soft Lilac Glow */
+  --cyan-glow: 0 0 10px rgba(76, 201, 240, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* background-color: var(--bg-color); Removed to allow StarsBackground to show */
+  background-color: transparent;
+  color: var(--text-color);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--heading-color);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  background-color: rgba(26, 26, 46, 0.6);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--cyan-glow);
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+/* Primary Button Style (Save Password, Login, etc) */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #1A1A2E; /* Dark text on bright button */
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #7dd3f0;
+  box-shadow: var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+/* Secondary/Logout Button Style */
+.btn-secondary {
+  background-color: rgba(26, 26, 46, 0.8);
+  border: 1px solid var(--text-muted);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(149, 125, 173, 0.1);
+  color: var(--heading-color);
+  border-color: var(--heading-color);
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 2.5rem;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.eye-icon:hover {
+  color: var(--primary-color);
+  background: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+}
+
+.password-toggle-icon:hover {
+  color: var(--text-color);
+  background: none;
+  transform: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.message {
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.message.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.message.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
