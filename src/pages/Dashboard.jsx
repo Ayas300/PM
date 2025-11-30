@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../api/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 import '../styles/Dashboard.css';
@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   const fetchEntries = async () => {
     try {
-      const res = await axios.get('/api/entries', {
+      const res = await axiosInstance.get('/api/entries', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEntries(res.data);
@@ -62,7 +62,7 @@ const Dashboard = () => {
     try {
       const encryptedPassword = CryptoJS.AES.encrypt(newEntry.password, encryptionKey).toString();
       
-      await axios.post('/api/entries', {
+      await axiosInstance.post('/api/entries', {
         siteName: newEntry.website, // Backend expects siteName
         siteUrl: newEntry.website,
         login: newEntry.username,
@@ -83,7 +83,7 @@ const Dashboard = () => {
 
   const handleShowPasswordRequest = async (entryId) => {
     try {
-      await axios.post('/api/auth/show-password/request', {}, {
+      await axiosInstance.post('/api/auth/show-password/request', {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSelectedEntryId(entryId);
@@ -99,7 +99,7 @@ const Dashboard = () => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/show-password/verify', {
+      const res = await axiosInstance.post('/api/auth/show-password/verify', {
         otp,
         entryId: selectedEntryId
       }, {

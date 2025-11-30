@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../api/axiosConfig';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Register.css';
 
@@ -28,7 +28,7 @@ const Register = () => {
     try {
       // Exclude confirmPassword from the data sent to the backend
       const { confirmPassword, ...dataToSend } = formData;
-      await axios.post("/api/auth/register", dataToSend);
+      await axiosInstance.post("/api/auth/register", dataToSend);
       setMessage("Registration successful! Redirecting to login...");
       setTimeout(() => navigate("/login"), 2000);
     } catch (error) {

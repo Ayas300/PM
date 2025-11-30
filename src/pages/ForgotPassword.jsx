@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/axiosConfig";
 import { useNavigate, Link } from "react-router-dom";
 import '../styles/ForgetPassword.css';
 
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const handleRequestOTP = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/forgot-password/request", { email });
+      await axiosInstance.post("/api/auth/forgot-password/request", { email });
       setMessage("OTP sent to your email.");
       setStep(2);
     } catch (error) {
@@ -26,7 +26,7 @@ const ForgotPassword = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/forgot-password/verify", {
+      await axiosInstance.post("/api/auth/forgot-password/verify", {
         email,
         otp,
         newPassword,
